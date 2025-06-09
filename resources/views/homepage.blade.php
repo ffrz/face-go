@@ -5,7 +5,8 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>{{ env('APP_NAME') }}</title>
-  <meta name="description" content="{{ env('APP_NAME') }} adalah solusi digital untuk mengelola proses produksi maklun dan konveksi secara transparan, terstruktur, dan mudah diawasi — dari penyerahan bahan hingga pembayaran hasil kerja.">
+  <meta name="description"
+    content="{{ env('APP_NAME') }} adalah solusi digital untuk mengelola proses produksi maklun dan konveksi secara transparan, terstruktur, dan mudah diawasi — dari penyerahan bahan hingga pembayaran hasil kerja.">
   <meta name="keywords" content="">
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -48,146 +49,125 @@
 
     <!-- Hero Section -->
     <section id="hero" class="section hero light-background">
-
       <div class="container">
         <div class="row gy-4">
           <div class="col-lg-6 order-lg-1 d-flex flex-column justify-content-center order-2" data-aos="fade-up">
-            <h2>Kelola Relasi Pelanggan dan Prospek secara Profesional</h2>
-            <p>{{ env('APP_NAME') }} adalah sistem manajemen hubungan pelanggan (Customer Relationship Management)
-              berbasis web yang membantu Anda melacak interaksi, memantau progres prospek, dan meningkatkan konversi
-              penjualan dalam satu platform terintegrasi.</p>
+            <h2>Absensi Otomatis dan Akurat dengan Selfie dan Deteksi Lokasi</h2>
+            <p>{{ env('APP_NAME') }} adalah sistem absensi digital berbasis wajah dan deteksi lokasi untuk sekolah,
+              instansi, dan perusahaan — memastikan kehadiran real-time, akurat, dan bebas kecurangan.</p>
           </div>
           <div class="col-lg-6 order-lg-2 hero-img order-1" data-aos="zoom-out" data-aos-delay="200">
-            <img src="assets/img/hero-img.jpg" class="img-fluid" style="border-radius: 10px;" alt="">
+            <img src="assets/img/hero-img.jpg" class="img-fluid" style="border-radius: 10px;" alt="FaceGo Absensi">
           </div>
         </div>
       </div>
-
-    </section><!-- /Hero Section -->
+    </section>
 
     <!-- About Section -->
     <section id="about" class="section about">
-
       <div class="container">
-
-        <h3 class="text-center">Solusi CRM Fleksibel untuk Berbagai Jenis Usaha dan Proyek</h3>
+        <h3 class="text-center">Solusi Absensi Modern dan Terintegrasi</h3>
         <p class="mb-5 text-center">
-          Apapun bidang usaha Anda — baik jasa, produk, B2B, maupun individu — {{ env('APP_NAME') }} memberi
-          Anda kendali penuh atas data pelanggan dan kinerja tim pemasaran atau penjualan.
+          Dengan teknologi pengenalan wajah, {{ env('APP_NAME') }} menghilangkan risiko titip absen dan memudahkan rekap
+          kehadiran harian, bulanan, hingga rekap gaji.
         </p>
-        <div class="row gy-3 items-center">
-          <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-3 align-items-center">
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <img src="assets/img/about-img.jpg" alt="" class="img-fluid" style="border-radius:10px;">
           </div>
-          <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
             <div class="about-content ps-lg-3 ps-0">
               <ul>
                 <li>
-                  <i class="bi bi-building-check"></i>
+                  <i class="bi bi-person-bounding-box"></i>
                   <div>
-                    <h4>Pelacakan Kunjungan & Interaksi</h4>
-                    <p>Catat setiap pertemuan, follow-up, atau komunikasi yang dilakukan
-                      tim Anda dengan prospek atau pelanggan. Lacak hasil kunjungan, respon, dan rencana tindak lanjut secara historis.</p>
+                    <h4>Absensi Wajah Otomatis</h4>
+                    <p>Absen hanya dengan selfie, sistem akan mengenali wajah secara otomatis — tidak perlu fingerprint
+                      atau tanda tangan manual.</p>
                   </div>
                 </li>
                 <li>
-                  <i class="bi bi-kanban"></i>
+                  <i class="bi bi-geo-alt"></i>
                   <div>
-                    <h4>Manajemen Status Prospek</h4>
-                    <p>Tandai setiap pelanggan berdasarkan status mereka seperti: baru, tertarik, dalam negosiasi,
-                      atau ditutup (berhasil/gagal). Fokus pada prospek yang paling potensial.</p>
+                    <h4>Pelacakan Lokasi GPS</h4>
+                    <p>Pastikan pengguna melakukan absen dari lokasi yang valid. Lokasi akan terekam otomatis saat absen
+                      masuk dan pulang.</p>
                   </div>
                 </li>
                 <li>
-                  <i class="bi bi-clock-history"></i>
+                  <i class="bi bi-calendar-check"></i>
                   <div>
-                    <h4>Riwayat Layanan & Penawaran</h4>
-                    <p>Lihat data lengkap mengenai layanan atau produk yang pernah dikenalkan atau digunakan oleh masing-masing pelanggan.
-                      Cocok untuk upselling dan pengembangan relasi jangka panjang.</p>
+                    <h4>Rekap & Laporan Kehadiran</h4>
+                    <p>Laporan hadir/tidak hadir, keterlambatan, izin, dan cuti otomatis direkap dan dapat diunduh kapan
+                      saja dalam bentuk Excel/PDF.</p>
                   </div>
                 </li>
                 <li>
-                  <i class="bi bi-person-check"></i>
+                  <i class="bi bi-people"></i>
                   <div>
-                    <h4>Penugasan Tim</h4>
-                    <p>Tentukan siapa yang bertanggung jawab terhadap tiap prospek. Semua aktivitas terhubung ke pengguna tertentu
-                      untuk akuntabilitas dan pelacakan kerja.</p>
+                    <h4>Dashboard Admin Real-Time</h4>
+                    <p>Admin dapat melihat siapa yang hadir, siapa yang belum, dan status absensi setiap karyawan atau
+                      siswa secara real-time.</p>
                   </div>
                 </li>
                 <li>
-                  <i class="bi bi-speedometer"></i>
+                  <i class="bi bi-bell-fill"></i>
                   <div>
-                    <h4>Dashboard Insight</h4>
-                    <p>Pantau progres tim, status pelanggan, jumlah interaksi, dan hasil penjualan dalam satu tampilan visual yang mudah dipahami.</p>
-                  </div>
-                </li>
-                <li>
-                  <i class="bi bi-bell"></i>
-                  <div>
-                    <h4>Notifikasi & Log Aktivitas</h4>
-                    <p>Setiap update tercatat secara otomatis: perubahan status, kunjungan baru, penambahan catatan, hingga penugasan ulang.
-                      Anda tidak akan kehilangan jejak.</p>
+                    <h4>Notifikasi Kehadiran</h4>
+                    <p>Notifikasi dikirim otomatis ke admin atau wali kelas/orang tua saat siswa melakukan absen.</p>
                   </div>
                 </li>
               </ul>
             </div>
-
           </div>
         </div>
-
       </div>
-
-    </section><!-- /About Section -->
+    </section>
 
     <!-- Features Section -->
     <section id="features" class="services section light-background">
-
-      <!-- Section Title -->
       <div class="section-title container" data-aos="fade-up">
-        <h2>Manfaat Utama Shiftech CRM</h2>
-      </div><!-- End Section Title -->
+        <h2>Manfaat Utama {{ env('APP_NAME') }}</h2>
+      </div>
 
       <div class="container">
-
         <div class="row gy-4">
-
           <div class="col-12 col-md-3" data-aos="fade-up" data-aos-delay="100">
             <div class="service-item position-relative">
-              <div class="icon"><i class="bi bi-transparency icon"></i></div>
-              <h4><a href="#" class="stretched-link">Transparansi Proses Penjualan</a></h4>
-              <p>Semua aktivitas terekam dan terstruktur sehingga Anda tahu apa yang sedang terjadi, siapa yang melakukannya, dan apa langkah selanjutnya.</p>
+              <div class="icon"><i class="bi bi-shield-check icon"></i></div>
+              <h4><a href="#" class="stretched-link">Aman & Anti Titip Absen</a></h4>
+              <p>Wajah tidak bisa dipalsukan. Sistem validasi berganda memastikan hanya orang bersangkutan yang bisa
+                absen.</p>
             </div>
           </div>
           <div class="col-12 col-md-3" data-aos="fade-up" data-aos-delay="200">
             <div class="service-item position-relative">
-              <div class="icon"><i class="bi bi-database-up icon"></i></div>
-              <h4><a href="#" class="stretched-link">Efisiensi & Produktivitas</a></h4>
-              <p>Kurangi catatan manual dan tumpukan spreadsheet. Sistem digital ini membuat manajemen pelanggan menjadi jauh lebih mudah.</p>
+              <div class="icon"><i class="bi bi-graph-up icon"></i></div>
+              <h4><a href="#" class="stretched-link">Data Akurat & Real-Time</a></h4>
+              <p>Absensi langsung masuk ke sistem begitu dilakukan, tanpa delay. Cocok untuk supervisi jarak jauh.</p>
             </div>
           </div>
-          <div class="col-12 col-md-3" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-12 col-md-3" data-aos="fade-up" data-aos-delay="300">
             <div class="service-item position-relative">
-              <div class="icon"><i class="bi bi-graph-up-arrow icon"></i></div>
-              <h4><a href="#" class="stretched-link">Skalabilitas Tim & Proyek</a></h4>
-              <p>Baik dikelola sendiri atau bersama tim, Shiftech CRM dirancang untuk mendukung pertumbuhan usaha tanpa ribet.</p>
+              <div class="icon"><i class="bi bi-save icon"></i></div>
+              <h4><a href="#" class="stretched-link">Rekap Otomatis</a></h4>
+              <p>Hemat waktu tanpa rekap manual. Semua data bisa dicetak dan disinkronkan ke sistem penggajian atau
+                laporan sekolah.</p>
             </div>
           </div>
-          <div class="col-12 col-md-3" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-12 col-md-3" data-aos="fade-up" data-aos-delay="400">
             <div class="service-item position-relative">
-              <div class="icon"><i class="bi bi-hand-thumbs-up icon"></i></div>
-              <h4><a href="#" class="stretched-link">Meningkatkan Peluang Konversi</a></h4>
-              <p>Dengan data yang lebih jelas dan terpusat, Anda bisa membuat keputusan yang lebih tepat dalam menawarkan produk,
-                layanan, atau tindak lanjut.</p>
+              <div class="icon"><i class="bi bi-clock icon"></i></div>
+              <h4><a href="#" class="stretched-link">Efisien & Mudah Digunakan</a></h4>
+              <p>Cukup buka aplikasi, selfie, dan selesai. Tidak butuh alat khusus seperti fingerprint atau kartu RFID.
+              </p>
             </div>
           </div>
         </div>
-
       </div>
-
-    </section><!-- /Services Section -->
-
-
+    </section>
   </main>
+
 
   <footer id="footer" class="footer position-relative">
 
@@ -196,8 +176,11 @@
         <div class="row justify-content-center text-center">
           <div class="col-lg-12">
             <h4>Mulai Sekarang!</h4>
-            <p>Tinggalkan sistem pencatatan manual. Kelola pelanggan, tim, dan prospek Anda lebih cerdas dengan {{ env('APP_NAME') }}!</p>
-            <a href="https://wa.me/6285317404760?text=Halo+saya+ingin+mendaftar+aplikasi+{{ env('APP_NAME') }}+untuk+usaha+saya.+Mohon+info+selanjutnya." target="_blank" class="btn-get-started">
+            <p>Mau aplikasi absensi digital berbasis foto selfie dan pin lokasi <br> Cocok untuk sekolah, kantor, dan
+              instansi
+              lainnya? Mulai sekarang gunakan {{ env('APP_NAME') }}!</p>
+            <a href="https://wa.me/6285317404760?text=Halo+saya+ingin+mendaftar+aplikasi+{{ env('APP_NAME') }}+untuk+usaha/instansi+saya.+Mohon+info+selanjutnya."
+              target="_blank" class="btn-get-started">
               Pesan Sekrang
             </a>
           </div>
@@ -205,7 +188,7 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="contact">
       <div class="row text-center">
         <div class="col-lg-12 mt-5 text-center">
           <h4>Hubungi Kami</h4>
@@ -214,7 +197,7 @@
           <p><strong>Email:</strong> <span>crm@shiftech.my.id</span></p>
         </div>
       </div>
-      
+
 
     </div>
 
