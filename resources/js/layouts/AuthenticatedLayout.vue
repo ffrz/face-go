@@ -7,7 +7,7 @@ defineComponent({
   name: "AuthenticatedLayout",
 });
 
-const LEFT_DRAWER_STORAGE_KEY = "shiftech-crm.layout.left-drawer-open";
+const LEFT_DRAWER_STORAGE_KEY = "face-go.admin.layout.left-drawer-open";
 const $q = useQuasar();
 const page = usePage();
 const leftDrawerOpen = ref(
@@ -132,52 +132,16 @@ onMounted(() => {
 
           <q-separator />
 
-          <q-item clickable v-ripple :active="$page.url.startsWith('/admin/interactions')"
-            @click="router.get(route('admin.interaction.index'))">
+          <!-- <q-item clickable v-ripple :active="$page.url.startsWith('/admin/employees')"
+            @click="router.get(route('admin.employee.index'))">
             <q-item-section avatar>
-              <q-icon name="touch_double" />
+              <q-icon name="people" />
             </q-item-section>
             <q-item-section>
-              <q-item-label>Interaksi Client</q-item-label>
+              <q-item-label>Karyawan</q-item-label>
             </q-item-section>
-          </q-item>
-          <q-item clickable v-ripple :active="$page.url.startsWith('/admin/closings')"
-            @click="router.get(route('admin.closing.index'))">
-            <q-item-section avatar>
-              <q-icon name="handshake" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>Closing</q-item-label>
-            </q-item-section>
-          </q-item>
-          <q-item clickable v-ripple :active="$page.url.startsWith('/admin/customer-services')"
-            @click="router.get(route('admin.customer-service.index'))">
-            <q-item-section avatar>
-              <q-icon name="linked_services" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>Layanan Client</q-item-label>
-            </q-item-section>
-          </q-item>
-          <q-separator />
-          <q-item clickable v-ripple :active="$page.url.startsWith('/admin/customers')"
-            @click="router.get(route('admin.customer.index'))">
-            <q-item-section avatar>
-              <q-icon name="partner_exchange" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>Client</q-item-label>
-            </q-item-section>
-          </q-item>
-          <q-item clickable v-ripple :active="$page.url.startsWith('/admin/services')"
-            @click="router.get(route('admin.service.index'))">
-            <q-item-section avatar>
-              <q-icon name="apps" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>Layanan</q-item-label>
-            </q-item-section>
-          </q-item>
+          </q-item> -->
+
           <q-item v-if="$page.props.auth.user.role == $CONSTANTS.USER_ROLE_ADMIN" clickable v-ripple
             :active="$page.url.startsWith('/admin/settings/users')" @click="router.get(route('admin.user.index'))">
             <q-item-section avatar>

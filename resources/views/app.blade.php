@@ -21,10 +21,6 @@
     window.CONFIG.APP_VERSION_STR = "{{ config('app.version_str', '1.0.0') }}";
     window.CONSTANTS = <?= json_encode([
           'USER_ROLES' => \App\Models\User::Roles,
-          'INTERACTION_STATUSES' => \App\Models\Interaction::Statuses,
-          'INTERACTION_TYPES' => \App\Models\Interaction::Types,
-          'INTERACTION_ENGAGEMENT_LEVELS' => \App\Models\Interaction::EngagementLevels,
-          'CUSTOMER_SERVICE_STATUSES' => \App\Models\CustomerService::Statuses,
       ]) ?>;
     window.CONSTANTS.USER_ROLE_ADMIN = "{{ \App\Models\User::Role_Admin }}";
     @if(!!env('APP_DEMO'))

@@ -2,15 +2,10 @@
 
 use App\Http\Controllers\Admin\ApiController;
 use App\Http\Controllers\Admin\AuthController;
-use App\Http\Controllers\Admin\ClosingController;
 use App\Http\Controllers\Admin\CompanyProfileController;
-use App\Http\Controllers\Admin\CustomerController;
-use App\Http\Controllers\Admin\CustomerServiceController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\InteractionController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ReportController;
-use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Middleware\Auth;
 use App\Http\Middleware\NonAuthenticated;
