@@ -14,6 +14,10 @@ defineComponent({
 .q-toolbar a:hover {
   color: #fff;
 }
+
+#app-logo {
+  border-radius: 0% !important;
+}
 </style>
 
 <template>
@@ -21,8 +25,8 @@ defineComponent({
     <q-header elevated class="bg-primary text-white">
       <q-toolbar style="max-width: 980px; margin:0 auto;">
         <q-toolbar-title align="center">
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+          <q-avatar id="app-logo">
+            <img src="/assets/img/app-logo.svg">
           </q-avatar>
           <a class="q-pl-md text-white" :href="route('home')">{{ $config.APP_NAME }}</a>
         </q-toolbar-title>

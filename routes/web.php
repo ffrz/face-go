@@ -8,8 +8,14 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Middleware\Auth;
+use App\Http\Middleware\EmployeeAuth;
 use App\Http\Middleware\NonAuthenticated;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\Employee\AuthController as EmployeeAuthController;
+use App\Http\Controllers\Employee\DashboardController as EmployeeDashboardController;
+use App\Http\Controllers\Employee\ProfileController as EmployeeProfileController;
+use App\Http\Controllers\Employee\WalletTransactionController as WalletTransactionController;
 
 Route::get('/', function () {
     return view('homepage');
@@ -29,7 +35,7 @@ Route::middleware(NonAuthenticated::class)->group(function () {
 
 Route::middleware([Auth::class])->group(function () {
     Route::prefix('api')->group(function () {
-        Route::get('active-customers', [ApiController::class, 'activeCustomers'])->name('api.active-customers');
+        // Route::get('active-employees', [ApiController::class, 'activeEmployees'])->name('api.active-employees');
     });
 
     Route::match(['get', 'post'], 'admin/auth/logout', [AuthController::class, 'logout'])->name('admin.auth.logout');
@@ -54,72 +60,15 @@ Route::middleware([Auth::class])->group(function () {
             Route::get('closing-by-sales', [ReportController::class, 'closingBySales'])->name('admin.report.closing-by-sales');
             Route::get('closing-by-services', [ReportController::class, 'closingByServices'])->name('admin.report.closing-by-services');
 
-            Route::get('customer-services-active', [ReportController::class, 'customerServicesActive'])->name('admin.report.customer-services-active');
-            Route::get('customer-services-new', [ReportController::class, 'customerServicesNew'])->name('admin.report.customer-services-new');
-            Route::get('customer-services-ended', [ReportController::class, 'customerServicesEnded'])->name('admin.report.customer-services-ended');
+            Route::get('employee-services-active', [ReportController::class, 'employeeServicesActive'])->name('admin.report.employee-services-active');
+            Route::get('employee-services-new', [ReportController::class, 'employeeServicesNew'])->name('admin.report.employee-services-new');
+            Route::get('employee-services-ended', [ReportController::class, 'employeeServicesEnded'])->name('admin.report.employee-services-ended');
 
             Route::get('client-new', [ReportController::class, 'clientNew'])->name('admin.report.client-new');
             Route::get('client-active-inactive', [ReportController::class, 'clientActiveInactive'])->name('admin.report.client-active-inactive');
             Route::get('client-history', [ReportController::class, 'clientHistory'])->name('admin.report.client-history');
 
             Route::get('sales-performance', [ReportController::class, 'salesPerformance'])->name('admin.report.sales-performance');
-        });
-
-        Route::prefix('services')->group(function () {
-            Route::get('', [ServiceController::class, 'index'])->name('admin.service.index');
-            Route::get('data', [ServiceController::class, 'data'])->name('admin.service.data');
-            Route::get('add', [ServiceController::class, 'editor'])->name('admin.service.add');
-            Route::get('duplicate/{id}', [ServiceController::class, 'duplicate'])->name('admin.service.duplicate');
-            Route::get('edit/{id}', [ServiceController::class, 'editor'])->name('admin.service.edit');
-            Route::get('detail/{id}', [ServiceController::class, 'detail'])->name('admin.service.detail');
-            Route::post('save', [ServiceController::class, 'save'])->name('admin.service.save');
-            Route::post('delete/{id}', [ServiceController::class, 'delete'])->name('admin.service.delete');
-            Route::get('export', [ServiceController::class, 'export'])->name('admin.service.export');
-        });
-
-        Route::prefix('customers')->group(function () {
-            Route::get('', [CustomerController::class, 'index'])->name('admin.customer.index');
-            Route::get('data', [CustomerController::class, 'data'])->name('admin.customer.data');
-            Route::get('add', [CustomerController::class, 'editor'])->name('admin.customer.add');
-            Route::get('duplicate/{id}', [CustomerController::class, 'duplicate'])->name('admin.customer.duplicate');
-            Route::get('edit/{id}', [CustomerController::class, 'editor'])->name('admin.customer.edit');
-            Route::get('detail/{id}', [CustomerController::class, 'detail'])->name('admin.customer.detail');
-            Route::post('save', [CustomerController::class, 'save'])->name('admin.customer.save');
-            Route::post('delete/{id}', [CustomerController::class, 'delete'])->name('admin.customer.delete');
-            Route::get('export', [CustomerController::class, 'export'])->name('admin.customer.export');
-        });
-
-        Route::prefix('interactions')->group(function () {
-            Route::get('', [InteractionController::class, 'index'])->name('admin.interaction.index');
-            Route::get('data', [InteractionController::class, 'data'])->name('admin.interaction.data');
-            Route::get('add', [InteractionController::class, 'editor'])->name('admin.interaction.add');
-            Route::get('edit/{id}', [InteractionController::class, 'editor'])->name('admin.interaction.edit');
-            Route::get('detail/{id}', [InteractionController::class, 'detail'])->name('admin.interaction.detail');
-            Route::post('save', [InteractionController::class, 'save'])->name('admin.interaction.save');
-            Route::post('delete/{id}', [InteractionController::class, 'delete'])->name('admin.interaction.delete');
-            Route::get('export', [InteractionController::class, 'export'])->name('admin.interaction.export');
-        });
-
-        Route::prefix('closings')->group(function () {
-            Route::get('', [ClosingController::class, 'index'])->name('admin.closing.index');
-            Route::get('data', [ClosingController::class, 'data'])->name('admin.closing.data');
-            Route::get('add', [ClosingController::class, 'editor'])->name('admin.closing.add');
-            Route::get('edit/{id}', [ClosingController::class, 'editor'])->name('admin.closing.edit');
-            Route::get('detail/{id}', [ClosingController::class, 'detail'])->name('admin.closing.detail');
-            Route::post('save', [ClosingController::class, 'save'])->name('admin.closing.save');
-            Route::post('delete/{id}', [ClosingController::class, 'delete'])->name('admin.closing.delete');
-            Route::get('export', [ClosingController::class, 'export'])->name('admin.closing.export');
-        });
-
-        Route::prefix('customer-services')->group(function () {
-            Route::get('', [CustomerServiceController::class, 'index'])->name('admin.customer-service.index');
-            Route::get('data', [CustomerServiceController::class, 'data'])->name('admin.customer-service.data');
-            Route::get('add', [CustomerServiceController::class, 'editor'])->name('admin.customer-service.add');
-            Route::get('edit/{id}', [CustomerServiceController::class, 'editor'])->name('admin.customer-service.edit');
-            Route::get('detail/{id}', [CustomerServiceController::class, 'detail'])->name('admin.customer-service.detail');
-            Route::post('save', [CustomerServiceController::class, 'save'])->name('admin.customer-service.save');
-            Route::post('delete/{id}', [CustomerServiceController::class, 'delete'])->name('admin.customer-service.delete');
-            Route::get('export', [CustomerServiceController::class, 'export'])->name('admin.customer-service.export');
         });
 
         Route::prefix('settings')->group(function () {
@@ -143,4 +92,27 @@ Route::middleware([Auth::class])->group(function () {
             });
         });
     });
+});
+
+Route::middleware(NonAuthenticated::class)->group(function () {
+    Route::prefix('/employee/auth')->group(function () {
+        Route::match(['get', 'post'], 'login', [EmployeeAuthController::class, 'login'])->name('employee.auth.login');
+        Route::match(['get', 'post'], 'register', [EmployeeAuthController::class, 'register'])->name('employee.auth.register');
+        Route::match(['get', 'post'], 'forgot-password', [EmployeeAuthController::class, 'forgotPassword'])->name('employee.auth.forgot-password');
+    });
+});
+
+Route::middleware([EmployeeAuth::class])->prefix('employee')->group(function () {
+    Route::match(['get', 'post'], 'auth/logout', [EmployeeAuthController::class, 'logout'])->name('employee.auth.logout');
+    Route::redirect('', 'dashboard', 301);
+
+    Route::get('dashboard', [EmployeeDashboardController::class, 'index'])->name('employee.dashboard');
+    Route::get('test', [EmployeeDashboardController::class, 'test'])->name('employee.test');
+    Route::get('about', function () {
+        return inertia('employee/About');
+    })->name('employee.about');
+
+    Route::get('profile/edit', [EmployeeProfileController::class, 'edit'])->name('employee.profile.edit');
+    Route::post('profile/update', [EmployeeProfileController::class, 'update'])->name('employee.profile.update');
+    Route::post('profile/update-password', [EmployeeProfileController::class, 'updatePassword'])->name('employee.profile.update-password');
 });

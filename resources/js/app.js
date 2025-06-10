@@ -4,6 +4,7 @@ import { createApp, h } from "vue";
 import { createInertiaApp, Head, Link } from "@inertiajs/vue3";
 import { Dialog, Loading, Notify, Quasar } from "quasar";
 import AuthenticatedLayout from "./layouts/AuthenticatedLayout.vue";
+import EmployeeLayout from "./layouts/EmployeeLayout.vue";
 import GuestLayout from "./layouts/GuestLayout.vue";
 import "@quasar/extras/material-icons/material-icons.css";
 import "@quasar/extras/material-icons-outlined/material-icons-outlined.css";
@@ -46,7 +47,8 @@ createInertiaApp({
       .component('i-link', Link)
       .component('my-link', MyLink)
       .component('guest-layout', GuestLayout)
-      .component('authenticated-layout', AuthenticatedLayout);
+      .component('authenticated-layout', AuthenticatedLayout)
+      .component('employee-layout', EmployeeLayout);
 
     VueApp.config.globalProperties.$dayjs = dayjs;
     VueApp.config.globalProperties.$config = window.CONFIG;

@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use Illuminate\Support\Facades\Auth;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -31,16 +32,23 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         $user = $request->user();
+        $employee = Auth::guard('employee')->user();
         return [
             ...parent::share($request),
+            'company' => [
+                'name' => Setting::value('company_name', config('app.name')),
+            ],
             'auth' => [
                 'user' => $user ? [
                     'id' => $user->id,
-                    'company_name' => Setting::value('company_name', 'My Company'),
                     'name' => $user->name,
                     'username' => $user->username,
                     'role' => $user->role,
-                    'email' => $user->email,
+                ] : null,
+                'employee' => $employee ? [
+                    'id' => $employee->id,
+                    'nis' => $employee->nis,
+                    'name' => $employee->name,
                 ] : null,
             ],
             'flash' => [

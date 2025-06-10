@@ -10,12 +10,12 @@ use Illuminate\Support\Facades\DB;
 class User extends Authenticatable
 {
     public const Role_Admin = 'admin';
-    public const Role_Sales = 'sales';
+    public const Role_Staff = 'staff';
 
     // Display role di hardcode saja, tidak diambil dari translations
     public const Roles = [
         self::Role_Admin => 'Administrator',
-        self::Role_Sales => 'Salesman',
+        self::Role_Staff => 'Staff',
     ];
 
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -82,7 +82,7 @@ class User extends Authenticatable
     public static function activeSalesCount()
     {
         return DB::select(
-            'select count(0) as count from users where active = 1 and role = \'' . self::Role_Sales . '\''
+            'select count(0) as count from users where active = 1 and role = \'' . self::Role_Staff . '\''
         )[0]->count;
     }
 
