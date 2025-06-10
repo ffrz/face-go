@@ -40,7 +40,7 @@
       </nav>
 
       <a class="btn-getstarted" href="{{ route('admin.auth.login') }}">Masuk</a>
-      <a class="btn-getstarted" href="{{ route('admin.auth.register') }}">Daftar</a>
+      {{-- <a class="btn-getstarted" href="{{ route('admin.auth.register') }}">Daftar</a> --}}
 
     </div>
   </header>

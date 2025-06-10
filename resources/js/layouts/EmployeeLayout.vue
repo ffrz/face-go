@@ -107,7 +107,7 @@ onMounted(() => {
               <q-item-label>Dashboard</q-item-label>
             </q-item-section>
           </q-item>
-          <q-separator />
+
           <!-- <q-item clickable v-ripple :active="$page.url.startsWith('/employee/wallet-transactions')"
             @click="router.get(route('employee.wallet-transaction.index'))">
             <q-item-section avatar>
@@ -123,7 +123,13 @@ onMounted(() => {
               <q-icon name="manage_accounts" />
             </q-item-section>
             <q-item-section>
-              <q-item-label>Profil</q-item-label>
+              <q-item-label>Profil Saya</q-item-label>
+            </q-item-section>
+          </q-item>
+
+          <q-item clickable v-close-popup v-ripple style="color: inherit" :href="route('employee.auth.logout')">
+            <q-item-section>
+              <q-item-label><q-icon name="logout" class="q-mr-sm" />Logout</q-item-label>
             </q-item-section>
           </q-item>
           <div class="absolute-bottom text-grey-6 q-pa-md">
