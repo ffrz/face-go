@@ -29,12 +29,13 @@ class ProfileController extends Controller
     public function update(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'phone' => 'required|max:100',
-            'address' => 'required|max:1000',
+            'phone' => 'nullable|max:40',
+            'address' => 'nullable|max:500',
         ]);
 
         $employee = Employee::findOrFail(Auth::guard('employee')->user()->id);
-        $employee->update($validated);
+        $employee->fill($validated);
+        $employee->save();
 
         return back()->with('success', 'Profil berhasil diperbarui.');
     }

@@ -7,7 +7,7 @@ const title = "Profil Saya";
 
 <template>
   <i-head :title="title" />
-  <authenticated-layout>
+  <employee-layout>
     <template #title>{{ title }}</template>
     <div class="q-pa-sm">
       <div class="row justify-center">
@@ -17,5 +17,5 @@ const title = "Profil Saya";
         </div>
       </div>
     </div>
-  </authenticated-layout>
+  </employee-layout>
 </template>

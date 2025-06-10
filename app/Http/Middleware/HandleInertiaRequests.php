@@ -47,7 +47,7 @@ class HandleInertiaRequests extends Middleware
                 ] : null,
                 'employee' => $employee ? [
                     'id' => $employee->id,
-                    'nis' => $employee->nis,
+                    'nik' => $employee->nik,
                     'name' => $employee->name,
                 ] : null,
             ],
