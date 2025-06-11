@@ -21,6 +21,7 @@ class Employee extends Authenticatable
         'phone',
         'address',
         'active',
+        'notes',
         'last_login_datetime',
         'last_activity_description',
         'last_activity_datetime'

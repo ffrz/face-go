@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('phone', 100);
             $table->string('address', 200);
             $table->boolean('active')->default(true);
+            $table->text('notes')->nullable();
 
             $table->string('password');
             $table->datetime('last_login_datetime')->nullable();

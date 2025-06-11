@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ApiController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CompanyProfileController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\UserController;
@@ -15,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Employee\AuthController as EmployeeAuthController;
 use App\Http\Controllers\Employee\DashboardController as EmployeeDashboardController;
 use App\Http\Controllers\Employee\ProfileController as EmployeeProfileController;
-use App\Http\Controllers\Employee\WalletTransactionController as WalletTransactionController;
 
 Route::get('/', function () {
     return view('homepage');
@@ -48,6 +48,18 @@ Route::middleware([Auth::class])->group(function () {
         Route::get('about', function () {
             return inertia('admin/About');
         })->name('admin.about');
+
+         Route::prefix('employees')->group(function () {
+            Route::get('', [EmployeeController::class, 'index'])->name('admin.employee.index');
+            Route::get('data', [EmployeeController::class, 'data'])->name('admin.employee.data');
+            Route::get('detail/{id}', [EmployeeController::class, 'detail'])->name('admin.employee.detail');
+            Route::get('add', [EmployeeController::class, 'editor'])->name('admin.employee.add');
+            Route::get('edit/{id}', [EmployeeController::class, 'editor'])->name('admin.employee.edit');
+            Route::get('duplicate/{id}', [EmployeeController::class, 'duplicate'])->name('admin.employee.duplicate');
+            Route::post('save', [EmployeeController::class, 'save'])->name('admin.employee.save');
+            Route::post('delete/{id}', [EmployeeController::class, 'delete'])->name('admin.employee.delete');
+            Route::get('export', [EmployeeController::class, 'export'])->name('admin.employee.export');
+         });
 
         Route::prefix('reports')->group(function () {
             Route::get('', [ReportController::class, 'index'])->name('admin.report.index');

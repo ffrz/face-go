@@ -143,6 +143,15 @@ onMounted(() => {
           </q-item> -->
 
           <q-item v-if="$page.props.auth.user.role == $CONSTANTS.USER_ROLE_ADMIN" clickable v-ripple
+            :active="$page.url.startsWith('/admin/employees')" @click="router.get(route('admin.employee.index'))">
+            <q-item-section avatar>
+              <q-icon name="group" />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>Karyawan</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item v-if="$page.props.auth.user.role == $CONSTANTS.USER_ROLE_ADMIN" clickable v-ripple
             :active="$page.url.startsWith('/admin/settings/users')" @click="router.get(route('admin.user.index'))">
             <q-item-section avatar>
               <q-icon name="group" />

@@ -40,7 +40,7 @@
       <img src="{{ $logoRelative }}" alt="Logo Perusahaan" style="width: 24px; height: auto;  margin: 0 auto;" />
     </div>
   @endif
-  <h4 style="margin:0;text-align:center;">{{ \App\Models\Setting::value('company_name') }}</h4>
+  <h4 style="margin:0;text-align:center;">{{ \App\Models\Setting::value('company_name', config('app.name', 'My App')) }}</h4>
   <h2 style="margin:0;text-align:center;">{{ $title }}</h2>
   <div style="text-align:center;">
     <small>Dibuat oleh <b>{{ Auth::user()->username }}</b>
