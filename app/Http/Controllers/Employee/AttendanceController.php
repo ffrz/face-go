@@ -17,8 +17,18 @@ class AttendanceController extends Controller
 
     public function checkIn(Request $request)
     {
+        $employeeId = Auth::guard('employee')->user()->id;
+        $date = Carbon::today();
+
         if ($request->method() == 'GET') {
-            return inertia('employee/attendance/CheckIn');
+            // todo: cek apakah sudah check in
+            $attendance = Attendance::where('employee_id', $employeeId)
+                ->where('date', $date)
+                ->first();
+
+            return inertia('employee/attendance/CheckIn', [
+                'attendance' => $attendance,
+            ]);
         }
 
         $request->validate([

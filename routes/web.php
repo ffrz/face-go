@@ -131,6 +131,9 @@ Route::middleware([EmployeeAuth::class])->prefix('employee')->group(function () 
         Route::match(['get', 'post'], 'check-out', [EmployeeAttendanceController::class, 'checkOut'])->name('employee.attendance.check-out');
         Route::get('history', [EmployeeAttendanceController::class, 'history'])->name('employee.attendance.history');
         Route::get('historyData', [EmployeeAttendanceController::class, 'historyData'])->name('employee.attendance.history-data');
+        Route::get('test', function() {
+            return inertia('employee/attendance/Test');
+        });
     });
 
     Route::get('profile/edit', [EmployeeProfileController::class, 'edit'])->name('employee.profile.edit');
