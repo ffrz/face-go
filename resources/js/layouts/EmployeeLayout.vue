@@ -99,7 +99,7 @@ onMounted(() => {
       <q-scroll-area style="height: calc(100% - 50px); margin-top: 50px">
         <q-list id="main-nav" style="margin-bottom: 50px">
           <q-item clickable v-ripple :active="$page.url.startsWith('/employee/dashboard')"
-            @click="router.get(route('employee.dashboard'))">
+            @click="router.get(route('employee.dashboard.index'))">
             <q-item-section avatar>
               <q-icon name="dashboard" />
             </q-item-section>
