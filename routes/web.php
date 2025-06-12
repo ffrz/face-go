@@ -119,7 +119,7 @@ Route::middleware([EmployeeAuth::class])->prefix('employee')->group(function () 
     Route::match(['get', 'post'], 'auth/logout', [EmployeeAuthController::class, 'logout'])->name('employee.auth.logout');
     Route::redirect('', 'dashboard', 301);
 
-    Route::get('dashboard', [EmployeeDashboardController::class, 'index'])->name('employee.dashboard');
+    Route::get('dashboard', [EmployeeDashboardController::class, 'index'])->name('employee.dashboard.index');
     Route::get('test', [EmployeeDashboardController::class, 'test'])->name('employee.test');
     Route::get('about', function () {
         return inertia('employee/About');

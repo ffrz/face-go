@@ -29,7 +29,8 @@ onMounted(async () => {
 const submit = async () => {
   try {
     const blob = await (await fetch(photoData.value)).blob()
-    form.photo = blob;
+    const file = new File([blob], `photo_${Date.now()}.jpg`, { type: 'image/jpeg' })
+    form.photo = file;
 
     handleSubmit({
       form, url: route('employee.attendance.check-in'), onSuccess: () => {
