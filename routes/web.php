@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Employee\AuthController as EmployeeAuthController;
 use App\Http\Controllers\Employee\DashboardController as EmployeeDashboardController;
 use App\Http\Controllers\Employee\ProfileController as EmployeeProfileController;
+use App\Http\Controllers\Employee\AttendanceController as EmployeeAttendanceController;
 
 Route::get('/', function () {
     return view('homepage');
@@ -49,7 +50,7 @@ Route::middleware([Auth::class])->group(function () {
             return inertia('admin/About');
         })->name('admin.about');
 
-         Route::prefix('employees')->group(function () {
+        Route::prefix('employees')->group(function () {
             Route::get('', [EmployeeController::class, 'index'])->name('admin.employee.index');
             Route::get('data', [EmployeeController::class, 'data'])->name('admin.employee.data');
             Route::get('detail/{id}', [EmployeeController::class, 'detail'])->name('admin.employee.detail');
@@ -59,7 +60,7 @@ Route::middleware([Auth::class])->group(function () {
             Route::post('save', [EmployeeController::class, 'save'])->name('admin.employee.save');
             Route::post('delete/{id}', [EmployeeController::class, 'delete'])->name('admin.employee.delete');
             Route::get('export', [EmployeeController::class, 'export'])->name('admin.employee.export');
-         });
+        });
 
         Route::prefix('reports')->group(function () {
             Route::get('', [ReportController::class, 'index'])->name('admin.report.index');
@@ -123,6 +124,14 @@ Route::middleware([EmployeeAuth::class])->prefix('employee')->group(function () 
     Route::get('about', function () {
         return inertia('employee/About');
     })->name('employee.about');
+
+    Route::prefix('attendance')->group(function() {
+        Route::get('', [EmployeeAttendanceController::class, 'index'])->name('employee.attendance.index');
+        Route::match(['get', 'post'], 'check-in', [EmployeeAttendanceController::class, 'checkIn'])->name('employee.attendance.check-in');
+        Route::match(['get', 'post'], 'check-out', [EmployeeAttendanceController::class, 'checkOut'])->name('employee.attendance.check-out');
+        Route::get('history', [EmployeeAttendanceController::class, 'history'])->name('employee.attendance.history');
+        Route::get('historyData', [EmployeeAttendanceController::class, 'historyData'])->name('employee.attendance.history-data');
+    });
 
     Route::get('profile/edit', [EmployeeProfileController::class, 'edit'])->name('employee.profile.edit');
     Route::post('profile/update', [EmployeeProfileController::class, 'update'])->name('employee.profile.update');

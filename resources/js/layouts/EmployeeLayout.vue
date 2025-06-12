@@ -107,16 +107,34 @@ onMounted(() => {
               <q-item-label>Dashboard</q-item-label>
             </q-item-section>
           </q-item>
-
-          <!-- <q-item clickable v-ripple :active="$page.url.startsWith('/employee/wallet-transactions')"
-            @click="router.get(route('employee.wallet-transaction.index'))">
+          <q-item clickable v-ripple :active="$page.url.startsWith('/employee/attenndance/check-in')"
+            @click="router.get(route('employee.attendance.check-in'))">
+            <q-item-section avatar>
+              <q-icon name="login" />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>Check In</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item clickable v-ripple :active="$page.url.startsWith('/employee/attenndance/check-out')"
+            @click="router.get(route('employee.attendance.check-out'))">
+            <q-item-section avatar>
+              <q-icon name="logout" />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>Check Out</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item clickable v-ripple :active="$page.url.startsWith('/employee/attendance/history')"
+            @click="router.get(route('employee.attendance.history'))">
             <q-item-section avatar>
               <q-icon name="history" />
             </q-item-section>
             <q-item-section>
-              <q-item-label>Riwayat Transaksi</q-item-label>
+              <q-item-label>Riwayat Absensi</q-item-label>
             </q-item-section>
-          </q-item> -->
+          </q-item>
+          <q-separator />
           <q-item clickable v-ripple :active="$page.url.startsWith('/employee/profile')"
             @click="router.get(route('employee.profile.edit'))">
             <q-item-section avatar>
@@ -126,10 +144,12 @@ onMounted(() => {
               <q-item-label>Profil Saya</q-item-label>
             </q-item-section>
           </q-item>
-
           <q-item clickable v-close-popup v-ripple style="color: inherit" :href="route('employee.auth.logout')">
+            <q-item-section avatar>
+              <q-icon name="logout" />
+            </q-item-section>
             <q-item-section>
-              <q-item-label><q-icon name="logout" class="q-mr-sm" />Logout</q-item-label>
+              <q-item-label>Logout</q-item-label>
             </q-item-section>
           </q-item>
           <div class="absolute-bottom text-grey-6 q-pa-md">

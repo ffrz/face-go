@@ -36,7 +36,7 @@ class EmployeeSeeder extends Seeder
             'updated_by_uid' => 1,
         ]);
 
-        for ($i = 2; $i <= 100; $i++) {
+        for ($i = 2; $i <= 10; $i++) {
             $phone = $faker->unique()->numerify('08##########');
             $nik = $faker->randomElement(['2023', '2024', '2025']) . str_pad($i, 3, '0', STR_PAD_LEFT);
 
