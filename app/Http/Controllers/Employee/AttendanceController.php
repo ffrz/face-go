@@ -15,7 +15,20 @@ class AttendanceController extends Controller
 {
     public function index()
     {
-        return inertia('employee/attendance/Index');
+        $employeeId = Auth::guard('employee')->user()->id;
+        $date = Carbon::today();
+        $attendance = Attendance::where('employee_id', $employeeId)
+            ->where('date', $date)
+            ->first();
+        if (!$attendance) {
+            return redirect()->route('employee.attendance.check-in');
+        }
+        
+        if ($attendance->check_in_time) {
+            return redirect()->route('employee.attendance.check-out');
+        }
+        
+        return redirect()->route('employee.dashboard.index');
     }
 
     public function checkIn(Request $request)

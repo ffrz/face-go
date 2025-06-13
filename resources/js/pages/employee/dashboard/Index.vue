@@ -5,83 +5,63 @@ import { router, usePage } from "@inertiajs/vue3";
 import { getQueryParams } from "@/helpers/utils";
 
 const title = "Dashboard";
-const showFilter = ref(true);
-const selected_period = ref(getQueryParams()["period"] ?? "this_month");
-
 const page = usePage();
 
-const period_options = ref([
-  { value: "today", label: "Hari Ini" },
-  { value: "yesterday", label: "Kemarin" },
-  { value: "this_week", label: "Minggu Ini" },
-  { value: "last_week", label: "Minggu Lalu" },
-  { value: "this_month", label: "Bulan Ini" },
-  { value: "last_month", label: "Bulan Lalu" },
-  { value: "this_year", label: "Tahun Ini" },
-  { value: "last_year", label: "Tahun Lalu" },
-  { value: "last_7_days", label: "7 Hari Terakhir" },
-  { value: "last_30_days", label: "30 Hari Terakhir" },
-  { value: "all_time", label: "Seluruh Waktu" },
-]);
-const onFilterChange = () => {
-  router.visit(route("employee.dashboard", { period: selected_period.value }));
-};
+const handleCheckIn = () => {
+  router.visit(route('employee.attendance.check-in'))
+}
+
+const handleCheckOut = () => {
+  router.visit(route('employee.attendance.check-out'))
+}
+
+
 </script>
 
 <template>
   <i-head :title="title" />
   <employee-layout>
-    <template #title>{{ title }}</template>
+    <template #title>Hi, {{ page.props.auth.employee.name }}</template>
     <template #right-button>
-      <q-btn
-        class="q-ml-sm"
-        :icon="!showFilter ? 'filter_alt' : 'filter_alt_off'"
-        color="grey"
-        dense
-        @click="showFilter = !showFilter"
-      />
+
     </template>
-    <template #header v-if="showFilter">
-      <q-toolbar class="filter-bar">
-        <div class="row q-col-gutter-xs items-center q-pa-sm full-width">
-          <q-select
-            class="custom-select col-12"
-            style="min-width: 150px"
-            v-model="selected_period"
-            :options="period_options"
-            label="Bulan"
-            dense
-            map-options
-            emit-value
-            outlined
-            @update:model-value="onFilterChange"
-          />
-        </div>
-      </q-toolbar>
+    <template #header>
+
     </template>
     <div class="q-pa-sm">
-      <div>
-        <div class="text-subtitle1 text-bold text-grey-8">Statistik Aktual</div>
-        <p class="text-grey-8">Fitur belum tersedia!</p>
-      </div>
-      <div class="q-pt-md">
-        <div class="text-subtitle1 text-bold text-grey-8">
-          Statistik {{period_options.find((a) => a.value == selected_period).label}}
+      <div class="row q-col-gutter-sm ">
+        <div class="col-sm-6 col-xs-12">
+          <q-item :style="`background-color: #888`" class="q-pa-none" clickable @click="handleCheckIn">
+            <q-item-section side :style="`background-color: #666`" class="q-pa-sm q-mr-none text-white">
+              <q-img
+                :src="page.props.data.today_attendance?.check_in_photo ? '/' + page.props.data.today_attendance.check_in_photo : '/assets/img/no-image.png'"
+                spinner-color="white" style="width: 64px; height: 64px; border-radius: 25%" />
+            </q-item-section>
+            <q-item-section class=" q-pa-md q-ml-none  text-white">
+              <q-item-label>Masuk</q-item-label>
+              <q-item-label class="text-white text-weight-bolder">
+                {{ page.props.data.today_attendance?.check_in_time ?
+                  $dayjs(page.props.data.today_attendance?.check_in_time).format('HH:mm:ss') : 'Belum Absen' }}
+              </q-item-label>
+            </q-item-section>
+          </q-item>
         </div>
-        <p class="text-grey-8">Fitur belum tersedia!</p>
-      </div>
-      <div class="q-pt-sm">
-        <div class="row q-col-gutter-sm">
-          <div class="col-md-6 col-12">
-
-          </div>
-          <div class="col-md-6 col-12">
-
-          </div>
+        <div class="col-sm-6 col-xs-12">
+          <q-item :style="`background-color: #888`" class="q-pa-none" clickable @click="handleCheckOut">
+            <q-item-section side :style="`background-color: #666`" class="q-pa-sm q-mr-none text-white">
+              <q-img
+                :src="page.props.data.today_attendance?.check_out_photo ? '/' + page.props.data.today_attendance.check_out_photo : '/assets/img/no-image.png'"
+                spinner-color="white" style="width: 64px; height: 64px; border-radius: 25%" />
+            </q-item-section>
+            <q-item-section class=" q-pa-md q-ml-none  text-white">
+              <q-item-label>Pulang</q-item-label>
+              <q-item-label class="text-white text-weight-bolder">
+                {{ page.props.data.today_attendance?.check_out_time ?
+                  $dayjs(page.props.data.today_attendance.check_out_time).format('HH:mm:ss') : 'Belum Absen' }}
+              </q-item-label>
+            </q-item-section>
+          </q-item>
         </div>
-      </div>
-      <div>
-
       </div>
     </div>
   </employee-layout>

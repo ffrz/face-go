@@ -35,6 +35,7 @@ onMounted(async () => {
 })
 
 const submit = async () => {
+  previewPhoto();
   try {
     const blob = await (await fetch(photoData.value)).blob()
     const file = new File([blob], `photo_${Date.now()}.jpg`, { type: 'image/jpeg' })
@@ -59,17 +60,17 @@ const removePhoto = () => {
   <employee-layout>
     <template #title>{{ title }}</template>
     <template #right-button>
-      <q-btn :label="submitLabel" color="primary" :icon="icon" @click="submit" :disable="!photoTaken" />
+      <q-btn :label="submitLabel" color="primary" :icon="icon" @click="submit" :disable="form.processing" />
     </template>
     <div class="q-pa-sm">
       <div class="row">
         <div class="col-md-6 col">
           <video ref="video" autoplay class="rounded" style="width: 100%;" v-show="!photoTaken" />
           <canvas ref="canvas" v-show="photoTaken" style="width: 100%;" />
-          <div class="q-gutter-sm text-center">
+          <!-- <div class="q-gutter-sm text-center">
             <q-btn label="Ambil Foto" color="primary" icon="photo" :disable="photoTaken" @click="previewPhoto" />
             <q-btn label="Buang" icon="delete" color="red" :disable="!photoTaken" @click="removePhoto" />
-          </div>
+          </div> -->
           <iframe v-if="form.location"
             :src="`https://www.google.com/maps?q=${encodeURIComponent(form.location)}&output=embed`" width="100%"
             height="300" style="border:1px solid #ddd; margin-top: 10px" allowfullscreen loading="lazy"

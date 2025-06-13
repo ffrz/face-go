@@ -7,6 +7,7 @@ defineComponent({
   name: "EmployeeLayout",
 });
 
+const activeTab = ref(null);
 const LEFT_DRAWER_STORAGE_KEY = "face-go.employee.layout.left-drawer-open";
 const $q = useQuasar();
 const page = usePage();
@@ -35,9 +36,9 @@ onMounted(() => {
   <q-layout view="lHh LpR lFf">
     <q-header>
       <q-toolbar class="bg-grey-1 text-black toolbar-scrolled">
-        <q-btn v-if="!leftDrawerOpen" flat dense aria-label="Menu" @click="toggleLeftDrawer">
+        <!-- <q-btn v-if="!leftDrawerOpen" flat dense aria-label="Menu" @click="toggleLeftDrawer">
           <q-icon class="material-symbols-outlined">dock_to_right</q-icon>
-        </q-btn>
+        </q-btn> -->
         <slot name="left-button"></slot>
         <q-toolbar-title :class="{ 'q-ml-sm': leftDrawerOpen }" style="font-size: 18px">
           <slot name="title">{{ $config.APP_NAME }}</slot>
@@ -46,7 +47,7 @@ onMounted(() => {
       </q-toolbar>
       <slot name="header"></slot>
     </q-header>
-    <q-drawer :breakpoint="768" v-model="leftDrawerOpen" bordered class="bg-grey-2" style="color: #444">
+    <!-- <q-drawer :breakpoint="768" v-model="leftDrawerOpen" bordered class="bg-grey-2" style="color: #444">
       <div class="absolute-top" style="
           height: 50px;
           border-bottom: 1px solid #ddd;
@@ -158,17 +159,76 @@ onMounted(() => {
           </div>
         </q-list>
       </q-scroll-area>
-    </q-drawer>
+    </q-drawer> -->
     <q-page-container class="bg-grey-1">
       <q-page>
         <slot></slot>
       </q-page>
     </q-page-container>
-    <slot name="footer"></slot>
+    <q-footer>
+      <q-tabs v-model="activeTab" indicator-color="yellow" class="bg-primary text-white shadow-2" align="justify" dense>
+        <q-tab name="dashboard" icon="home" label="Beranda" @click="router.get(route('employee.dashboard.index'))"
+          :class="$page.url.startsWith('/employee/dashboard') ? 'active' : ''" />
+        <!-- <q-tab name="calendar" icon="event" label="Kalender" @click="router.get(route('employee.attendance.index'))"
+          :class="$page.url.startsWith('/employee/history') ? 'active' : ''" /> -->
+        <q-tab name="attendance" icon="photo_camera" label="Absen" @click="router.get(route('employee.attendance.index'))"
+          :class="$page.url.startsWith('/employee/attendance') ? 'active' : ''" />
+        <!-- <q-tab name="history" icon="history" label="Riwayat" @click="router.get(route('employee.attendance.index'))"
+          :class="$page.url.startsWith('/employee/history') ? 'active' : ''" /> -->
+        <q-tab name="profile" icon="settings" label="Pengaturan" @click="router.get(route('employee.profile.edit'))"
+          :class="$page.url.startsWith('/employee/profile') ? 'active' : ''" />
+      </q-tabs>
+    </q-footer>
   </q-layout>
 </template>
 
 <style>
+.q-tabs .q-tab {
+  width: 33.33%;
+}
+
+.q-tabs .q-tab__label {
+  font-weight: normal;
+  text-transform: none;
+  font-size: 10px;
+  color: white;
+}
+
+.q-tabs .q-tab__icon {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.q-tabs .q-tab__icon,
+.q-tabs .q-tab__label {
+  opacity: 80%;
+}
+
+.q-tabs .active .q-tab__icon,
+.q-tabs .active .q-tab__label,
+.q-tabs .active .q-tab__indicator {
+  opacity: 100%;
+  color: white;
+}
+
+.q-tabs .active .q-tab__icon {
+  font-size: 22px;
+}
+
+.q-tabs .active .q-tab__label {
+  font-size: 11px;
+}
+
+.q-tabs .active * {
+  color: white !important;
+}
+
+.q-tab {
+  flex: 1 1 auto;
+  /* Ensures all tabs take equal space */
+  text-align: center;
+}
+
 .profile-btn span.block {
   text-align: left !important;
   width: 100% !important;
@@ -176,16 +236,19 @@ onMounted(() => {
 }
 </style>
 <style scoped>
-.q-toolbar {
+/* @media screen and (min-width: 768px) {
+  .q-footer {
+    display: none;
+  }
+} */
+
+/* .q-toolbar {
   border-bottom: 1px solid transparent;
-  /* Optional border line */
-}
+} */
 
 .toolbar-scrolled {
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
-  /* Add shadow */
+  /*box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); */
   border-bottom: 1px solid #ddd;
-  /* Optional border line */
 }
 
 .profile-btn-active {
